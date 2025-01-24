@@ -15,6 +15,10 @@ def main():
         ("04_traits", "07_deref"),
         ("04_traits", "08_sized"),
         ("04_traits", "09_from"),
+        ("04_traits", "10_assoc_vs_generic"),
+        ("04_traits", "11_clone"),
+        ("04_traits", "12_copy"),
+        ("04_traits", "13_drop"),
     ]
 
     # Upsert statement using ON CONFLICT
