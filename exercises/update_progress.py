@@ -9,11 +9,12 @@ def main():
     # List all (folder, exercise) pairs
     exercises_to_complete = [
         # 04_traits
-        ("04_traits", "00_intro"),
-        ("04_traits", "01_trait"),
-        ("04_traits", "02_orphan_rule"),
-        ("04_traits", "03_operator_overloading"),
         ("04_traits", "04_derive"),
+        ("04_traits", "05_trait_bounds"),
+        ("04_traits", "06_str_slice"),
+        ("04_traits", "07_deref"),
+        ("04_traits", "08_sized"),
+        ("04_traits", "09_from"),
     ]
 
     # Upsert statement using ON CONFLICT
