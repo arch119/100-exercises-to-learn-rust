@@ -13,16 +13,22 @@ pub enum TitleError{
     Long,
 }
 
+fn validate(val: String) -> Result<(), TitleError>{
+    if val.is_empty() {
+        return Err(TitleError::Empty);
+    }
+    if val.len() > 50 {
+        return Err(TitleError::Long);
+    }
+    Ok(())
+}
+
+
 impl TryFrom<String> for TicketTitle{
     type Error = TitleError;
 
     fn try_from(val: String) -> Result<Self, Self::Error>{
-        if val.is_empty() {
-            return Err(TitleError::Empty);
-        }
-        if val.len() > 50 {
-            return Err(TitleError::Long);
-        }
+        validate(val)?;
         Ok(TicketTitle(val))
     }
 }
@@ -31,12 +37,7 @@ impl TryFrom<&str> for TicketTitle{
     type Error = TitleError;
 
     fn try_from(val: &str) -> Result<Self, Self::Error>{
-        if val.is_empty() {
-            return Err(TitleError::Empty);
-        }
-        if val.len() > 50 {
-            return Err(TitleError::Long);
-        }
+        validate(val.into())?;
         Ok(TicketTitle(val.into()))
     }
 }
