@@ -6,6 +6,15 @@ pub struct TicketStore {
     tickets: Vec<Ticket>,
 }
 
+impl<'a> IntoIterator for &'a TicketStore {
+    type Item = &'a Ticket;
+    type IntoIter = std::slice::Iter<'a, Ticket>;
+
+    fn into_iter(self) -> Self::IntoIter {
+        self.tickets.iter()
+    }
+}
+
 #[derive(Clone, Debug, PartialEq)]
 pub struct Ticket {
     pub title: TicketTitle,
@@ -58,9 +67,10 @@ mod tests {
             status: Status::InProgress,
         };
         store.add_ticket(ticket);
-
         let tickets: Vec<&Ticket> = store.iter().collect();
         let tickets2: Vec<&Ticket> = (&store).into_iter().collect();
+        let tickets3: Vec<&Ticket> = store.iter().collect();
         assert_eq!(tickets, tickets2);
+        assert_eq!(tickets2, tickets3);
     }
 }
